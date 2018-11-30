@@ -5,7 +5,7 @@ public class Clientes {
 	private String nombre;
 	private String apellido;
 	private int edad; //¿?
-	private int celular;
+	private String celular;
 	private int dni;
 	private String telFijo;
 	private String domicilioCobro;
@@ -36,10 +36,10 @@ public class Clientes {
 	public void setEdad(int edad) {
 		this.edad = edad;
 	}
-	public int getCelular() {
+	public String getCelular() {
 		return celular;
 	}
-	public void setCelular(int celular) {
+	public void setCelular(String celular) {
 		this.celular = celular;
 	}
 	public int getDni() {
@@ -80,7 +80,7 @@ public class Clientes {
 				+ domicilioCobro + ", domicilioSecundario=" + domicilioSecundario + ", barrio=" + barrio + "]";
 	}
 	
-	public Clientes(int id_cliente, String nombre, String apellido, int edad, int celular, int dni, String telFijo,
+	public Clientes(int id_cliente, String nombre, String apellido, int edad, String celular, int dni, String telFijo,
 			String domicilioCobro, String domicilioSecundario, String barrio) {
 		super();
 		this.id_cliente = id_cliente;

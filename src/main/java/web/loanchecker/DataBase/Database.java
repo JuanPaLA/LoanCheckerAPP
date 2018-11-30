@@ -15,6 +15,13 @@ public class Database {
 	private String url;
 	private String usuario;
 	private String pass;
+	
+	public Database() {
+		this.driver="com.mysql.jdbc.Driver";
+		this.url="jdbc:mysql://sql10.freesqldatabase.com:3306/sql10266055";
+		this.usuario="sql10266055";
+		this.pass="4qmg65xSW8";
+	}
 
 	public String getDriver() {
 		return driver;

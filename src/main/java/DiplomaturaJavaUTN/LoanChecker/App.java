@@ -17,6 +17,18 @@ import web.loanchecker.model.Clientes;
  */
 public class App {
     public static void main( String[] args ) {        
+
+
+    	DAOCliente a = new DAOCliente();
+    	
+    	Clientes nabo = new Clientes(9, "cacho", "lopes", 22, "123321", 123123, "123123", "asdsad", "asdasd", "sdfsfs"); 
+    	
+    	a.insertar(nabo);
+
+    	
+    	
+    	//a.eliminar(nabo);
+    	
     	
     	/*
     	String port;
@@ -40,16 +52,6 @@ public class App {
     		e.printStackTrace();
     	}
     	*/
-
-    	DAOCliente a = new DAOCliente();
-    	
-    	Clientes nabo = new Clientes(6, "cacho", "lopes", 22, 123321, 123123, "123123", "asdsad", "asdasd", "sdfsfs"); 
-    	
-    	a.insertar(nabo);
-
-    	a.eliminar(nabo);
-    	
-    	
     	
     	
     	

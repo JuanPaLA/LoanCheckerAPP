@@ -8,25 +8,27 @@ public class DAOCliente implements Operaciones {
 	
 	Database db = new Database();
 	
+	@Override
 	public String insertar(Object obj) {
 		Clientes c = (Clientes) obj;
 		Connection conn;
 		PreparedStatement pst;
-		String sql="insert into Clientes values (?.?,?.?,?,?,?,?,?,?)";
+		String sql="insert into clientes values (?,?,?,?,?,?,?,?,?,?)";
 		String respuesta="";
 		
 		try {
-		
-			conn = DriverManager.getConnection
-					("jdbc:mysql://sql10.freesqldatabase.com:3306/sql10266055", 
-							"sql10266055", "4qmg65xSW8");
+			Class.forName(db.getDriver());
+			conn = DriverManager.getConnection(
+					db.getUrl(),
+					db.getUsuario(),
+					db.getPass());
 		
 			pst=conn.prepareStatement(sql);
 			pst.setInt(1, c.getId_cliente());
 			pst.setString(2, c.getNombre());
 			pst.setString(3, c.getApellido());
 			pst.setInt(4, c.getEdad());
-			pst.setInt(5, c.getCelular());
+			pst.setString(5, c.getCelular());
 			pst.setInt(6, c.getDni());
 			pst.setString(7, c.getTelFijo());
 			pst.setString(8, c.getDomicilioCobro());
@@ -39,7 +41,7 @@ public class DAOCliente implements Operaciones {
 			
 			conn.close();
 			
-		}catch(SQLException e) {
+		}catch(SQLException | ClassNotFoundException e) {
 			e.printStackTrace();
 		}
 		
