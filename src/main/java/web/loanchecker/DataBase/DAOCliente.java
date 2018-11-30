@@ -47,7 +47,8 @@ public class DAOCliente implements Operaciones {
 		
 		return respuesta;
 	}
-
+	
+	@Override
 	public String eliminar(Object obj) {
 		Clientes c = (Clientes) obj;
 		Connection conn;
@@ -57,7 +58,11 @@ public class DAOCliente implements Operaciones {
 		
 		try {
 			
-			conn = DriverManager.getConnection("jdbc:mysql://localhost:3308/loanchecker", "root", "");
+			Class.forName(db.getDriver());
+			conn = DriverManager.getConnection(
+					db.getUrl(),
+					db.getUsuario(),
+					db.getPass());
 			pst=conn.prepareStatement(sql);
 			pst.setInt(1, c.getId_cliente());
 
@@ -69,62 +74,56 @@ public class DAOCliente implements Operaciones {
 			
 		}catch(SQLException e) {
 			e.printStackTrace();
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 		
 		return respuesta;
 	}
 
 	@Override
-	public String modificar(Object obj) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public List<?> consultar() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public List<?> filtrar(String campo, String criterio) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-	
-	/*
 	public String modificar(Object obj) {
 		Clientes c = (Clientes) obj;
 		Connection conn;
 		PreparedStatement pst;
-		String sql= "update clientes set nombre=?, apellido=?, edad=?, celular=?, domicilio=?, dni=? where id_cliente=?";
+		String sql="update clientes set nombre=?, apellido=?, edad=?, celular=?, dni=?, fijo=?, domicilio=?, domiclio 2=?, barrio=? where id_Cliente=?";
 		String respuesta="";
 		
 		try {
-			conn = DriverManager.getConnection("jdbc:mysql://localhost:3308/loanchecker", "root", "");
+			Class.forName(db.getDriver());
+			conn = DriverManager.getConnection(
+					db.getUrl(),
+					db.getUsuario(),
+					db.getPass());
+		
 			pst=conn.prepareStatement(sql);
+			pst.setInt(10, c.getId_cliente());
 			pst.setString(1, c.getNombre());
 			pst.setString(2, c.getApellido());
 			pst.setInt(3, c.getEdad());
-			pst.setInt(4, c.getCelular());
-			pst.setString(5, c.getDomicilioCobro());
-			pst.setInt(6, c.getDni());
-			pst.setInt(7, c.getId_cliente());
+			pst.setString(4, c.getCelular());
+			pst.setInt(5, c.getDni());
+			pst.setString(6, c.getTelFijo());
+			pst.setString(7, c.getDomicilioCobro());
+			pst.setString(8, c.getDomicilioSecundario());
+			pst.setString(9, c.getBarrio());
 			
 			int filas = pst.executeUpdate();
 			
-			respuesta= "Se modificaron " + filas + " elementos";
+			respuesta= " se registraron " + filas + " elementos";
 			
 			conn.close();
 			
-		}catch(SQLException e) {
+		}catch(SQLException | ClassNotFoundException e) {
 			e.printStackTrace();
 		}
 		
 		return respuesta;
 	}
 
-	public List<Clientes> consultar() {
+	@Override
+	public List<?> consultar() {
 		List<Clientes> datos = new ArrayList<Clientes>();
 		Connection conn;
 		PreparedStatement pst;
@@ -142,9 +141,12 @@ public class DAOCliente implements Operaciones {
 						rs.getString("nombre"), 
 						rs.getString("apellido"), 
 						rs.getInt("edad"), 
-						rs.getInt("celular"), 
-						rs.getString("domicilio"), 
-						rs.getInt("dni")));
+						rs.getString("celular"),
+						rs.getInt("dni"),
+						rs.getString("fijo"),
+						rs.getString("domicilio"),
+						rs.getString("domicilio 2"),
+						rs.getString("barrio")));
 			}
 			
 			conn.close();
@@ -154,16 +156,19 @@ public class DAOCliente implements Operaciones {
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 		}
-		System.out.println(datos.size() + "numero de cambipos");
+		System.out.println(datos.size() + "numero de clientes");
+		System.out.println(datos.get(1).toString());
 		return datos;
 	}
 
-	public List<Clientes> filtrar(String campo, String criterio) {
+	@Override
+	public List<?> filtrar(String campo, String criterio) {
+
 		List<Clientes> datos = new ArrayList<Clientes>();
 		Connection conn;
 		PreparedStatement pst;
 		ResultSet rs;
-		String sql = "select * from clientes";
+		String sql = "select * from clientes where " + campo + criterio;
 		
 		try {
 			Class.forName(db.getDriver());
@@ -176,9 +181,12 @@ public class DAOCliente implements Operaciones {
 						rs.getString("nombre"), 
 						rs.getString("apellido"), 
 						rs.getInt("edad"), 
-						rs.getInt("celular"), 
-						rs.getString("domicilio"), 
-						rs.getInt("dni")));
+						rs.getString("celular"),
+						rs.getInt("dni"),
+						rs.getString("fijo"),
+						rs.getString("domicilio"),
+						rs.getString("domicilio 2"),
+						rs.getString("barrio")));
 			}
 			
 			conn.close();
@@ -188,9 +196,9 @@ public class DAOCliente implements Operaciones {
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 		}
+		System.out.println(datos.size() + "numero de clientes");
+		System.out.println(datos.get(0).toString());
 		return datos;
 	}
 	
-	*/
-
 }

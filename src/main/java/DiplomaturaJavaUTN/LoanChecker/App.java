@@ -23,12 +23,12 @@ public class App {
     	
     	Clientes nabo = new Clientes(9, "cacho", "lopes", 22, "123321", 123123, "123123", "asdsad", "asdasd", "sdfsfs"); 
     	
-    	a.insertar(nabo);
-
-    	
-    	
+    	/*Checked Methods */
+    	//a.insertar(nabo); 
     	//a.eliminar(nabo);
-    	
+    	//a.modificar(nabo);    	
+    	//a.consultar();
+    	a.filtrar("nombre", "like '%c%'");
     	
     	/*
     	String port;
