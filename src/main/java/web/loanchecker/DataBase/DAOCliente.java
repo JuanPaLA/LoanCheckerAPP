@@ -173,7 +173,7 @@ public class DAOCliente implements Operaciones {
 		try {
 			Class.forName(db.getDriver());
 			conn = DriverManager.getConnection(db.getUrl(), db.getUsuario(), db.getPass());
-			pst = conn.prepareStatement(sql);
+			pst = conn.prepareStatement(sql); 
 			rs= pst.executeQuery();
 			
 			while(rs.next()) {
