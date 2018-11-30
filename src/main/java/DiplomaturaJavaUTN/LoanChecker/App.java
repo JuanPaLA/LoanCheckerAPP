@@ -18,10 +18,16 @@ import web.loanchecker.model.Clientes;
 public class App {
     public static void main( String[] args ) {        
     	
+    	String port;
     	try {
-    		Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3308/loanchecker", "root", "");
+    		if(IpDetect.ipDetecter().equals("192.168.0.96")) {
+    			port = "3306";
+    		}else {
+    			port="3308";
+    		}
+    		Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/loanchecker", "root", "");
     		Statement pst = null;
-    		String query = "INSERT INTO clientes VALUES (5, 'cacho', 'lopes', 22, '123321', 123123, '123123', 'asdsad', 'asdasd', 'sdfsfs')";
+    		String query = "INSERT INTO clientes VALUES (6, 'cacho', 'lopes', 22, '123321', 123123, '123123', 'asdsad', 'asdasd', 'sdfsfs')";
     		String query2 = "select * from clientes";
     		
     		pst =con.createStatement();
