@@ -17,7 +17,9 @@ public class DAOCliente implements Operaciones {
 		
 		try {
 		
-			conn = DriverManager.getConnection("jdbc:mysql://localhost:3308/loanchecker", "root", "");
+			conn = DriverManager.getConnection
+					("jdbc:mysql://sql10.freesqldatabase.com:3306/sql10266055", 
+							"sql10266055", "4qmg65xSW8");
 		
 			pst=conn.prepareStatement(sql);
 			pst.setInt(1, c.getId_cliente());

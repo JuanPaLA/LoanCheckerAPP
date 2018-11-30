@@ -18,6 +18,7 @@ import web.loanchecker.model.Clientes;
 public class App {
     public static void main( String[] args ) {        
     	
+    	/*
     	String port;
     	try {
     		if(IpDetect.ipDetecter().equals("192.168.0.96")) {
@@ -38,17 +39,15 @@ public class App {
     	}catch(SQLException e) {
     		e.printStackTrace();
     	}
+    	*/
+
+    	DAOCliente a = new DAOCliente();
     	
+    	Clientes nabo = new Clientes(6, "cacho", "lopes", 22, 123321, 123123, "123123", "asdsad", "asdasd", "sdfsfs"); 
     	
-    	
-    	
-    	//DAOCliente a = new DAOCliente();
-//    	
-//    	Clientes nabo = new Clientes(3, "pacho", "herrera", 23, 32165444, "malabai 22", 65414787); 
-//    	
-//    	//a.insertar(nabo);
-//    	
-//    	a.eliminar(nabo);
+    	a.insertar(nabo);
+
+    	a.eliminar(nabo);
     	
     	
     	
