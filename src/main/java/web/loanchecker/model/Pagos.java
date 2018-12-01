@@ -57,7 +57,8 @@ public class Pagos {
 	}
 	 
 	//-----------Constructor Field----------------------------//
-	public Pagos(int id_pago, int id_prestamo, int id_cliente, String fecha, double monto, double montoPagado,
+	public Pagos(int id_pago, int id_prestamo, int id_cliente, String fecha, 
+			double monto, double montoPagado,
 			boolean estado) {
 		super();
 		this.id_pago = id_pago;

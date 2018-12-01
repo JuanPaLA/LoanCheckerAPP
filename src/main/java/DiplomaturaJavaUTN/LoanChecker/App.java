@@ -9,7 +9,9 @@ import java.sql.Statement;
 import com.mysql.jdbc.PreparedStatement;
 
 import web.loanchecker.DataBase.DAOCliente;
+import web.loanchecker.DataBase.DAOPagos;
 import web.loanchecker.model.Clientes;
+import web.loanchecker.model.Pagos;
 
 /**
  * Hello world!
@@ -28,7 +30,16 @@ public class App {
     	//a.eliminar(nabo);
     	//a.modificar(nabo);    	
     	//a.consultar();
-    	a.filtrar("nombre", "like '%c%'");
+    	//a.filtrar("nombre", "like '%c%'");
+    	
+    	/*PAGOS*/
+    	Pagos p = new Pagos(3,1,1, "1999-11-11", 3214, 1000, false);
+    	DAOPagos b = new DAOPagos();
+    	
+    	/*Checked methods */
+    	//b.insertar(p);
+    	b.consultar();
+    	
     	
     	/*
     	String port;
