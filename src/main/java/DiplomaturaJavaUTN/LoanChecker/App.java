@@ -39,6 +39,7 @@ public class App {
     	/*Checked methods */
     	//b.insertar(p);
     	b.consultar();
+    	//b.eliminar(p);
     	
     	
     	/*

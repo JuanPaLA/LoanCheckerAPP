@@ -11,6 +11,8 @@ import web.loanchecker.model.Prestamos;
 
 public class DAOPrestamos implements Operaciones {
 
+	Database db = new Database();	
+	
 	@Override
 	public String insertar(Object obj) {
 
@@ -22,7 +24,11 @@ public class DAOPrestamos implements Operaciones {
 		
 		try {
 		
-			conn = DriverManager.getConnection("jdbc:mysql://localhost:3308/loanchecker", "root", "");
+			Class.forName(db.getDriver());
+			conn = DriverManager.getConnection(
+					db.getUrl(),
+					db.getUsuario(),
+					db.getPass());
 		
 			pst=conn.prepareStatement(sql);
 			pst.setInt(1, p.getId_prestamo());
@@ -37,9 +43,6 @@ public class DAOPrestamos implements Operaciones {
 			pst.setString(10, p.getFechaInicio());
 			pst.setBoolean(11, p.isEstado());
 			
-			
-			
-			
 			int filas = pst.executeUpdate();
 			
 			respuesta= " se registraron " + filas + " elementos";
@@ -47,6 +50,9 @@ public class DAOPrestamos implements Operaciones {
 			conn.close();
 			
 		}catch(SQLException e) {
+			e.printStackTrace();
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
@@ -56,7 +62,29 @@ public class DAOPrestamos implements Operaciones {
 
 	@Override
 	public String eliminar(Object obj) {
-		// TODO Auto-generated method stub
+		Prestamos pp = (Prestamos) obj;
+		Connection conn;
+		PreparedStatement pst;
+		String sql = "delete from prestamos where id_prestamo=?";
+		
+		try {
+			Class.forName(db.getDriver());
+			conn = DriverManager.getConnection(
+					db.getUrl(),
+					db.getUsuario(),
+					db.getPass());			
+			pst=conn.prepareStatement(sql);
+			pst.setInt(1, pp.getId_prestamo());
+			
+			pst.executeUpdate();
+			
+			conn.close();
+		}catch(SQLException e) {
+			e.printStackTrace();
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		return null;
 	}
 
