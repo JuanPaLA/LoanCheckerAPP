@@ -29,8 +29,9 @@ public class App {
     	//a.insertar(nabo); 
     	//a.eliminar(nabo);
     	//a.modificar(nabo);    	
-    	//a.consultar();
+    	a.consultar();
     	//a.filtrar("nombre", "like '%c%'");
+    	System.out.println("PAGOS");
     	
     	/*PAGOS*/
     	Pagos p = new Pagos(3,1,1, "1999-11-11", 3214, 1000, false);
