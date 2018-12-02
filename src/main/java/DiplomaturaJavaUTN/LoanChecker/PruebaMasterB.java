@@ -6,6 +6,7 @@ public class PruebaMasterB {
 		// TODO Auto-generated method stub
 		System.out.println("PROBANDO BRANCHES");
 		System.out.println("the same");
+		System.out.println("the same");
 	}
 
 }
